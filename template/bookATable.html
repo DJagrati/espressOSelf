@@ -11,10 +11,38 @@
         .nav-link{ 
             font-style: oblique; color: antiquewhite;
         }
+        .bookTable-background{
+          background-image: url("../static/book-a-table.jpg");
+          background-position: center;
+          background-size: cover;
+          height: auto;
+          border: 5px solid;
+
+      }
+      .bookTable-form-div{
+        height: relative;
+        width: 100vw;
+        margin-top: 20px;  margin-bottom: 60px;
+        background-color: rgba(61, 37, 16, 0.705);
+        font-size: 20px;
+        padding: 20px;
+      }
+      .btn{
+        background-color:rgb(2, 2, 2);
+        color: rgb(243, 221, 193, 0.8); 
+        font-size: 20px;
+        width: 25vw;
+        margin: 20px;
+        font-weight: bold;
+      }
+      .form-label{
+        margin-left: 5px;
+      }
     </style>
-</head>
-<body class="bg-dark">
-    <nav class="navbar navbar-light bg-dark">
+  </head>
+  <body class="bg-dark">
+    <div class="bookTable-background">
+      <nav class="navbar navbar-light" style="background-color: rgba(0, 0, 0, 0.705);">
         <div class="row"style="margin-top: 5px; width:100%">
             <div class="col-2">
         <div class="container-fluid" style="height: 2em;">
@@ -37,5 +65,74 @@
         </div>
       </nav>
 
-</body>
+      <div style="display: flex; justify-content: center; align-items: center;">
+        <span style="font-size: 50px; font-weight: bolder;">Reverse a table for your special day!</span>
+      </div>
+
+      <div class = "container bookTable-form-div">
+          <form class="row g-3" style="color: rgb(0, 0, 0); font-weight: bold;">
+            <div class="col-md-12">
+              <label for="name" class="form-label">Name</label>
+              <input type="name" class="form-control" id="name">
+            </div>
+            <div class="col-md-6">
+              <label for="email" class="form-label">Email ID</label>
+              <input type="email" class="form-control" id="email">
+            </div>
+            <div class="col-md-6">
+              <label for="phone-no" class="form-label">Phone Number</label>
+              <input type="number" class="form-control" id="phone-no">
+            </div>
+            <div class="col-md-4">
+              <label for="tablebookedfor" class="form-label">Book A Table For</label>
+              <input type="date" class="form-control" id="tablebookedfor">
+            </div>
+            <div class="col-md-4">
+              <label for="bookingdate" class="form-label">Date of booking</label>
+              <input type="date" class="form-control" id="bookingdate" disabled>
+            </div>
+            <div class="col-md-4">
+              <label for="occasion" class="form-label">Any Special Occasion</label>
+              <select id="occasion" class="form-select">
+                <option selected>You don't need occasion to celebrate!</option>
+                <option>Birthday</option>
+                <option>Anniversary</option>
+                <option>Promotion</option>
+                <option>Long Pending Treat</option>
+              </select>
+             </div>       
+             <div class="col-md-12">
+              <label for="specialRequests" class="form-label">Any Special Request?</label>
+              <textarea class="form-control" id="specialRequests" rows="2"></textarea>
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center;">
+              <button type="button" class="btn">
+              Reverse A Table
+            </button>
+          </div>
+          </form>
+      </div>
+    </div>
+
+    <script>
+        function getDate(date){
+        var dd = date.getDate();
+        var mm = date.getMonth() + 1; //January is 0!
+        var yyyy = date.getFullYear();
+        if (dd < 10) {
+             dd = '0' + dd;
+        }
+        if (mm < 10) {
+             mm = '0' + mm;
+        } 
+        return (yyyy + '-' + mm + '-' + dd);
+      }
+      var today = new Date();
+      document.getElementById("tablebookedfor").setAttribute("min", getDate(today));
+      document.getElementById("tablebookedfor").setAttribute("value", getDate(today));
+      document.getElementById("bookingdate").setAttribute("value", getDate(today));
+      var maxDate = new Date(today.setMonth(today.getMonth()+2));
+      document.getElementById("tablebookedfor").setAttribute("max", getDate(maxDate));
+    </script>
+  </body>
 </html>
